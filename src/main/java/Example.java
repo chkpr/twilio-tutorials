@@ -9,11 +9,14 @@ public class Example {
     // and set the environment variables. See http://twil.io/secure
     public static final String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
     public static final String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");
+    public static final String FROM_NUMBER = System.getenv("TWILIO_FROM_NUMBER");
+    public static final String TO_NUMBER = System.getenv("MY_PHONE_NUMBER");
+    
 
     public static void main(String[] args) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Call call = Call.creator(new com.twilio.type.PhoneNumber("+14158675309"),
-                            new com.twilio.type.PhoneNumber("+14158675308"),
+        Call call = Call.creator(new com.twilio.type.PhoneNumber(TO_NUMBER),
+                            new com.twilio.type.PhoneNumber(FROM_NUMBER),
                             new com.twilio.type.Twiml("<Response><Say>Ahoy, World</Say></Response>"))
                         .create();
 
